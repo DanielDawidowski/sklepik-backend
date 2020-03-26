@@ -1,5 +1,9 @@
 # source: https://eu1.prisma.sh/dvds1987-4b189d/sklepik/dev
-# timestamp: Thu Mar 26 2020 07:46:05 GMT+0100 (GMT+01:00)
+# timestamp: Thu Mar 26 2020 12:46:16 GMT+0100 (GMT+01:00)
+
+type AggregateEvent {
+  count: Int!
+}
 
 type AggregateUser {
   count: Int!
@@ -10,6 +14,406 @@ type BatchPayload {
   count: Long!
 }
 
+type Event implements Node {
+  id: ID!
+  title: String!
+  description: String!
+  price: Int
+  start: String!
+  end: String!
+  image: String!
+}
+
+"""A connection to a list of items."""
+type EventConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [EventEdge]!
+  aggregate: AggregateEvent!
+}
+
+input EventCreateInput {
+  id: ID
+  title: String!
+  description: String!
+  price: Int
+  start: String!
+  end: String!
+  image: String!
+}
+
+"""An edge in a connection."""
+type EventEdge {
+  """The item at the end of the edge."""
+  node: Event!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum EventOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  price_ASC
+  price_DESC
+  start_ASC
+  start_DESC
+  end_ASC
+  end_DESC
+  image_ASC
+  image_DESC
+}
+
+type EventPreviousValues {
+  id: ID!
+  title: String!
+  description: String!
+  price: Int
+  start: String!
+  end: String!
+  image: String!
+}
+
+type EventSubscriptionPayload {
+  mutation: MutationType!
+  node: Event
+  updatedFields: [String!]
+  previousValues: EventPreviousValues
+}
+
+input EventSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [EventSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [EventSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [EventSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: EventWhereInput
+}
+
+input EventUpdateInput {
+  title: String
+  description: String
+  price: Int
+  start: String
+  end: String
+  image: String
+}
+
+input EventUpdateManyMutationInput {
+  title: String
+  description: String
+  price: Int
+  start: String
+  end: String
+  image: String
+}
+
+input EventWhereInput {
+  """Logical AND on all given filters."""
+  AND: [EventWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [EventWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [EventWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+  price: Int
+
+  """All values that are not equal to given value."""
+  price_not: Int
+
+  """All values that are contained in given list."""
+  price_in: [Int!]
+
+  """All values that are not contained in given list."""
+  price_not_in: [Int!]
+
+  """All values less than the given value."""
+  price_lt: Int
+
+  """All values less than or equal the given value."""
+  price_lte: Int
+
+  """All values greater than the given value."""
+  price_gt: Int
+
+  """All values greater than or equal the given value."""
+  price_gte: Int
+  start: String
+
+  """All values that are not equal to given value."""
+  start_not: String
+
+  """All values that are contained in given list."""
+  start_in: [String!]
+
+  """All values that are not contained in given list."""
+  start_not_in: [String!]
+
+  """All values less than the given value."""
+  start_lt: String
+
+  """All values less than or equal the given value."""
+  start_lte: String
+
+  """All values greater than the given value."""
+  start_gt: String
+
+  """All values greater than or equal the given value."""
+  start_gte: String
+
+  """All values containing the given string."""
+  start_contains: String
+
+  """All values not containing the given string."""
+  start_not_contains: String
+
+  """All values starting with the given string."""
+  start_starts_with: String
+
+  """All values not starting with the given string."""
+  start_not_starts_with: String
+
+  """All values ending with the given string."""
+  start_ends_with: String
+
+  """All values not ending with the given string."""
+  start_not_ends_with: String
+  end: String
+
+  """All values that are not equal to given value."""
+  end_not: String
+
+  """All values that are contained in given list."""
+  end_in: [String!]
+
+  """All values that are not contained in given list."""
+  end_not_in: [String!]
+
+  """All values less than the given value."""
+  end_lt: String
+
+  """All values less than or equal the given value."""
+  end_lte: String
+
+  """All values greater than the given value."""
+  end_gt: String
+
+  """All values greater than or equal the given value."""
+  end_gte: String
+
+  """All values containing the given string."""
+  end_contains: String
+
+  """All values not containing the given string."""
+  end_not_contains: String
+
+  """All values starting with the given string."""
+  end_starts_with: String
+
+  """All values not starting with the given string."""
+  end_not_starts_with: String
+
+  """All values ending with the given string."""
+  end_ends_with: String
+
+  """All values not ending with the given string."""
+  end_not_ends_with: String
+  image: String
+
+  """All values that are not equal to given value."""
+  image_not: String
+
+  """All values that are contained in given list."""
+  image_in: [String!]
+
+  """All values that are not contained in given list."""
+  image_not_in: [String!]
+
+  """All values less than the given value."""
+  image_lt: String
+
+  """All values less than or equal the given value."""
+  image_lte: String
+
+  """All values greater than the given value."""
+  image_gt: String
+
+  """All values greater than or equal the given value."""
+  image_gte: String
+
+  """All values containing the given string."""
+  image_contains: String
+
+  """All values not containing the given string."""
+  image_not_contains: String
+
+  """All values starting with the given string."""
+  image_starts_with: String
+
+  """All values not starting with the given string."""
+  image_not_starts_with: String
+
+  """All values ending with the given string."""
+  image_ends_with: String
+
+  """All values not ending with the given string."""
+  image_not_ends_with: String
+}
+
+input EventWhereUniqueInput {
+  id: ID
+}
+
 """
 The `Long` scalar type represents non-fractional signed whole numeric values.
 Long can represent values between -(2^63) and 2^63 - 1.
@@ -18,11 +422,17 @@ scalar Long
 
 type Mutation {
   createUser(data: UserCreateInput!): User!
+  createEvent(data: EventCreateInput!): Event!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateEvent(data: EventUpdateInput!, where: EventWhereUniqueInput!): Event
   deleteUser(where: UserWhereUniqueInput!): User
+  deleteEvent(where: EventWhereUniqueInput!): Event
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertEvent(where: EventWhereUniqueInput!, create: EventCreateInput!, update: EventUpdateInput!): Event!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyEvents(data: EventUpdateManyMutationInput!, where: EventWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyEvents(where: EventWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -54,8 +464,11 @@ type PageInfo {
 
 type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Event]!
   user(where: UserWhereUniqueInput!): User
+  event(where: EventWhereUniqueInput!): Event
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  eventsConnection(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EventConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -66,6 +479,7 @@ type Query {
 
 type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  event(where: EventSubscriptionWhereInput): EventSubscriptionPayload
 }
 
 type User implements Node {

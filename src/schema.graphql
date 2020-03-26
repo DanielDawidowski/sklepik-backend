@@ -1,7 +1,9 @@
+# import * from './generated/prisma.graphql'
+
 type Mutation {
-    hi: String
+    createEvent(title: String!, description: String!, price: Int, start: String!, end: String!, image: String): Event!
 }
 
 type Query {
-    hi: String
+    events: [Event]!
 }

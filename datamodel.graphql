@@ -3,3 +3,15 @@ type User {
   name: String!
   email: String!
 }
+
+type Event {
+  id: ID! @id
+  title: String!
+  description: String!
+  price: Int
+  start: String!
+  end: String!
+  # createdAt: DateTime! @createdAt
+  # updatedAt: DateTime! @updatedAt
+  image: String! 
+}
