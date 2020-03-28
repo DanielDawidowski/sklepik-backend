@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/dvds1987-4b189d/sklepik/dev
-# timestamp: Thu Mar 26 2020 12:46:16 GMT+0100 (GMT+01:00)
+# timestamp: Sat Mar 28 2020 10:35:31 GMT+0100 (GMT+01:00)
 
 type AggregateEvent {
   count: Int!
@@ -21,7 +21,8 @@ type Event implements Node {
   price: Int
   start: String!
   end: String!
-  image: String!
+  image: String
+  largeImage: String
 }
 
 """A connection to a list of items."""
@@ -41,7 +42,8 @@ input EventCreateInput {
   price: Int
   start: String!
   end: String!
-  image: String!
+  image: String
+  largeImage: String
 }
 
 """An edge in a connection."""
@@ -68,6 +70,8 @@ enum EventOrderByInput {
   end_DESC
   image_ASC
   image_DESC
+  largeImage_ASC
+  largeImage_DESC
 }
 
 type EventPreviousValues {
@@ -77,7 +81,8 @@ type EventPreviousValues {
   price: Int
   start: String!
   end: String!
-  image: String!
+  image: String
+  largeImage: String
 }
 
 type EventSubscriptionPayload {
@@ -126,6 +131,7 @@ input EventUpdateInput {
   start: String
   end: String
   image: String
+  largeImage: String
 }
 
 input EventUpdateManyMutationInput {
@@ -135,6 +141,7 @@ input EventUpdateManyMutationInput {
   start: String
   end: String
   image: String
+  largeImage: String
 }
 
 input EventWhereInput {
@@ -408,6 +415,46 @@ input EventWhereInput {
 
   """All values not ending with the given string."""
   image_not_ends_with: String
+  largeImage: String
+
+  """All values that are not equal to given value."""
+  largeImage_not: String
+
+  """All values that are contained in given list."""
+  largeImage_in: [String!]
+
+  """All values that are not contained in given list."""
+  largeImage_not_in: [String!]
+
+  """All values less than the given value."""
+  largeImage_lt: String
+
+  """All values less than or equal the given value."""
+  largeImage_lte: String
+
+  """All values greater than the given value."""
+  largeImage_gt: String
+
+  """All values greater than or equal the given value."""
+  largeImage_gte: String
+
+  """All values containing the given string."""
+  largeImage_contains: String
+
+  """All values not containing the given string."""
+  largeImage_not_contains: String
+
+  """All values starting with the given string."""
+  largeImage_starts_with: String
+
+  """All values not starting with the given string."""
+  largeImage_not_starts_with: String
+
+  """All values ending with the given string."""
+  largeImage_ends_with: String
+
+  """All values not ending with the given string."""
+  largeImage_not_ends_with: String
 }
 
 input EventWhereUniqueInput {
