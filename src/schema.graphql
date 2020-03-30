@@ -7,6 +7,7 @@ type Mutation {
 }
 
 type Query {
-    events: [Event]!
+    events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, first: Int): [Event]!
     event(where: EventWhereUniqueInput!): Event
+    eventsConnection(where: EventWhereInput): EventConnection!
 }
