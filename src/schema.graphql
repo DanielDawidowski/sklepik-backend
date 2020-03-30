@@ -2,7 +2,8 @@
 
 type Mutation {
     createEvent(title: String!, description: String!, price: Int!, start: String!, end: String!, image: String, largeImage: String): Event!
-    updateEvent(id: ID!, title: String, description: String, price: Int!, start: String!, end: String!): Event!
+    updateEvent(id: ID!, title: String, description: String, price: Int, start: String, end: String): Event!
+    deleteEvent(id: ID!): Event
 }
 
 type Query {
