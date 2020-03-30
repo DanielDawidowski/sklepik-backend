@@ -4,15 +4,15 @@ const Query = {
    events: forwardTo('db'),
    event: forwardTo('db'),
    eventsConnection: forwardTo('db'),
-//    me(parent, args, ctx, info) {
-//     // check if there is a current user ID
-//         if(!ctx.request.userId) {
-//             return null
-//         }
-//         return ctx.db.query.user({
-//             where: { id: ctx.request.userId }
-//         }, info)
-//     },
+   me(parent, args, ctx, info) {
+    // check if there is a current user ID
+        if(!ctx.request.userId) {
+            return null
+        }
+        return ctx.db.query.user({
+            where: { id: ctx.request.userId }
+        }, info)
+    },
     // async users(parent, args, ctx, info) {
     //     // 1. Check if they are logged in
     //     if(!ctx.request.userId) {

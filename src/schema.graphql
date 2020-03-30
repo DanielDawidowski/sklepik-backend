@@ -11,4 +11,5 @@ type Query {
     events(where: EventWhereInput, orderBy: EventOrderByInput, skip: Int, first: Int): [Event]!
     event(where: EventWhereUniqueInput!): Event
     eventsConnection(where: EventWhereInput): EventConnection!
+    me: User
 }
