@@ -9,10 +9,19 @@ const { transport, makeANiceEmail } = require('../mail');
 
 const Mutations = {
     async createEvent(parent, args, ctx, info) {
+        if (!ctx.request.userId) {
+            throw new Error('You must be logged in to do that!');
+        }
+
         // Check if logged in
         const event = await ctx.db.mutation.createEvent({
             data: {
-                ...args
+                user: {
+                    connect: {
+                      id: ctx.request.userId,
+                    },
+                },
+                ...args,
             }
         }, info); 
 
@@ -41,12 +50,12 @@ const Mutations = {
 
         // 2. Check if they own that item, or have the permissions
 
-        // const ownsItem = item.user.id === ctx.request.userId;
+        const ownsItem = item.user.id === ctx.request.userId;
         // const hasPermissions = ctx.request.user.permissions.some(permission => ['ADMIN', 'ITEMDELETE'].includes(permission));
         
-        // if(!ownsItem && !hasPermissions) {
-        //     throw new Error('You don\'t have permission to do that!')
-        // }
+        if(!ownsItem) {
+            throw new Error('You don\'t have permission to do that!')
+        }
 
         // 3. Delete it!
         return ctx.db.mutation.deleteEvent({ where }, info);

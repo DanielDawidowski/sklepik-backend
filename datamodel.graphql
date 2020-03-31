@@ -14,8 +14,7 @@ type Event {
   price: Int
   start: String!
   end: String!
-  # createdAt: DateTime! @createdAt
-  # updatedAt: DateTime! @updatedAt
   image: String
-  largeImage: String 
+  largeImage: String
+  user: User! 
 }
