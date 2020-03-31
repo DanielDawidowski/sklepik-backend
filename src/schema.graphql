@@ -1,10 +1,16 @@
 # import * from './generated/prisma.graphql'
 
+type SuccessMessage {
+    message: String
+}
+
 type Mutation {
     createEvent(title: String!, description: String!, price: Int!, start: String!, end: String!, image: String, largeImage: String): Event!
     updateEvent(id: ID!, title: String, description: String, price: Int, start: String, end: String): Event!
     deleteEvent(id: ID!): Event
     signup(email: String!, password: String!, name: String!): User!
+    signin(email: String!, password: String!): User!
+    signout: SuccessMessage
 }
 
 type Query {
@@ -13,3 +19,9 @@ type Query {
     eventsConnection(where: EventWhereInput): EventConnection!
     me: User
 }
+
+# type User{
+#   id: ID!
+#   name: String!
+#   email: String!
+# }
