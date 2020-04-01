@@ -173,6 +173,17 @@ const Mutations = {
         // 8. return the new user
         return updatedUser;
     },
+    async createBooking(parent, args, ctx, info) {
+      const booking = await ctx.db.mutation.createBooking({
+        data: {
+            ...args
+        }
+      }, info); 
+
+      console.log(booking);
+
+      return booking;
+    }
 };
 
 module.exports = Mutations;

@@ -13,6 +13,7 @@ type Mutation {
     signout: SuccessMessage
     requestReset(email: String!): SuccessMessage
     resetPassword(resetToken: String!, password: String!, confirmPassword: String!): User!
+    createBooking(name: String!, email: String!, phone: Int!, message: String!, event: EventCreateOneInput, createdAt: DateTime, updatedAt: DateTime): Booking!
 }
 
 type Query {
@@ -20,10 +21,12 @@ type Query {
     event(where: EventWhereUniqueInput!): Event
     eventsConnection(where: EventWhereInput): EventConnection!
     me: User
+    bookings(where: BookingWhereInput, orderBy: BookingOrderByInput): [Booking]!
+    booking(where: BookingWhereUniqueInput!): Booking
 }
 
 type User{
-  id: ID!
-  name: String!
-  email: String!
+    id: ID!
+    name: String!
+    email: String!
 }

@@ -18,3 +18,14 @@ type Event {
   largeImage: String
   user: User! 
 }
+
+type Booking{
+  id: ID! @id
+  name: String!
+  email: String!
+  phone: Int!
+  message: String
+  event: Event
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
